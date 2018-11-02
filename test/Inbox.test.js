@@ -15,7 +15,7 @@ let inbox
 beforeEach(async ()=> {
 	// get accounts
 	accounts = await web3.eth.getAccounts()
-	// deploy Inbox contract to account
+	// deploy Inbox contract
 	inbox = await new web3.eth.Contract(JSON.parse(interface))
 		.deploy({ data: bytecode, arguments : ['Hi there!'] })
 		.send({ from: accounts[0], gas: '1000000'})
@@ -23,7 +23,7 @@ beforeEach(async ()=> {
 
 describe('Inbox', ()=> {
 	it('deploys a contract', ()=> {
-		console.log(inbox)
+		assert.ok(inbox.options.address)
 	})	
 })
 
